@@ -38,15 +38,25 @@ jobs:
           cd mobile
           npx expo prebuild --platform android --clean
 
-      - name: Build debug APK
+      - name: Bundle JavaScript
+        run: |
+          cd mobile
+          npx expo export --platform android
+
+      - name: Copy bundle to Android assets
+        run: |
+          mkdir -p mobile/android/app/src/main/assets
+          cp -r mobile/dist/* mobile/android/app/src/main/assets/
+
+      - name: Build standalone APK
         run: |
           cd mobile/android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: nur-ramadan.apk
-          path: mobile/android/app/build/outputs/apk/debug/app-debug.apk
+          path: mobile/android/app/build/outputs/apk/release/app-release-unsigned.apk
           retention-days: 30
