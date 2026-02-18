@@ -1,0 +1,32 @@
+{
+  "expo": {
+    "name": "Nur Ramadan",
+    "slug": "nur-ramadan",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": false,
+    "splash": {
+      "backgroundColor": "#0F172A"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.almax.nurramadan"
+    },
+    "android": {
+      "package": "com.almax.nurramadan",
+      "adaptiveIcon": {
+        "backgroundColor": "#0F172A"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "nur-ramadan"
+      }
+    }
+  }
+}
