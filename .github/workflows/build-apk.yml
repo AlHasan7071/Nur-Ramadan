@@ -38,11 +38,19 @@ jobs:
           cd mobile
           npx expo prebuild --platform android --clean
 
+      - name: Create assets directory
+        run: mkdir -p mobile/android/app/src/main/assets
+
+      - name: Bundle JavaScript
+        run: |
+          cd mobile
+          npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+
       - name: Build APK
         run: |
           cd mobile/android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug -x bundleDebugJsAndAssets
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
